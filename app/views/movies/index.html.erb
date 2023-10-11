@@ -1,0 +1,22 @@
+<div class="container-fluid bg-dark">
+<p style="color: green"><%= notice %></p>
+  <h1>Movies</h1>
+
+  <div id="movies">
+    <div class="row d-flex">
+    <% @movies.each do |movie| %>
+      <div class="col-sm-2 mb-3">
+        <a href="<%= movie_path(movie) %>">
+          <div class="card" style="width: 12rem;height: 18rem;">
+          <img class="card-img-top" src="<%= movie.thumbnail %>" alt="Card image cap" style="height:300px;border:black">
+          </div>
+        </a>
+      </div>
+        <!-- <p class="btn btn-primary form-control">
+            <%= link_to "Show this movie", movie %>
+          </p> -->
+    <% end %>
+    </div>
+  </div>
+  <%= link_to "New movie", new_movie_path %>
+</div>
