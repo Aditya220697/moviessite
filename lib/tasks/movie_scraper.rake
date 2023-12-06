@@ -1,15 +1,11 @@
+require 'nokogiri'
+require 'open-uri'
+
 namespace :movie_scraper do
-    task crime: :environment do
-    #    c=1
-        for i in 1..152
-            # Your code inside the loop goes here
-            if i>1 
-                doc = Nokogiri::HTML(URI.open("https://allmovieshub.work/drama/page/#{i}/"))
-            else
-                doc = Nokogiri::HTML(URI.open('https://allmovieshub.work/drama/'))
-            end
-            # c=c+1
-            
+    task :Scrap , [:arg1] => :environment do |args|
+            site_link = args[:arg1]        
+            doc = Nokogiri::HTML(URI.open(site_link))
+
             doc.css('.site-content .entries .blog-entry .blog-entry-inner').each do |element|  
                 more_link= element.css('.thumbnail a').attr('href').value if(element.css('.thumbnail a').attr('href')).present?
                 
@@ -31,7 +27,6 @@ namespace :movie_scraper do
                 medium_hd_download_link = inner_doc.css('.maxbutton-4').attr('href').value if (inner_doc.css('.maxbutton-4').attr('href')).present?
                 full_hd_download_link = inner_doc.css('.maxbutton-5').attr('href').value if (inner_doc.css('.maxbutton-5').attr('href')).present?
                 trailer_link = inner_doc.css('iframe').attr('src').value if(inner_doc.css('iframe').attr('src')).present?
-
                 
             
             data_hash = {
@@ -54,8 +49,18 @@ namespace :movie_scraper do
             }
             detail = Movie.where(short_title: short_title).first_or_initialize
             detail.update(data_hash)
+            puts "done "
         end
-        puts "done #{i}"
     end
+    task drama: :environment do
+        (1..20).each do |i|
+          link = if i > 1
+                   "https://allmovieshub.bar/drama/page/#{i}/"
+                 else
+                   "https://allmovieshub.bar/drama/"
+                 end
+          Rake::Task['movie_scraper:Scrap'].invoke(link)
+          puts "Drama genre Scraped"
+        end
     end
 end

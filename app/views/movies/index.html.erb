@@ -1,21 +1,22 @@
-<div class="container-fluid bg-dark">
+<div class="container-fluid" style="background-color: azure;">
 <p style="color: green"><%= notice %></p>
   <h1>Movies</h1>
 
   <div id="movies">
     <div class="row d-flex">
     <% @movies.each do |movie| %>
-      <div class="col-sm-2 mb-3">
+      <div class="col-sm-3 mb-2 px-2" style="width:20%">
         <a href="<%= movie_path(movie) %>">
           <div class="card" style="width: 12rem;height: 18rem;">
-          <img class="card-img-top" src="<%= movie.thumbnail %>" alt="Card image cap" style="height:300px;border:black">
+          <img class="card-img-top" src="<%= movie.thumbnail %>" alt="Card image cap" style="height:500px;border:black">
           </div>
         </a>
       </div>
-        <!-- <p class="btn btn-primary form-control">
-            <%= link_to "Show this movie", movie %>
-          </p> -->
-    <% end %>
+      <!-- <p class="btn btn-primary form-control">
+        <%= link_to "Show this movie", movie %>
+      </p> -->
+      <% end %>
+      <%= will_paginate @movies %>
     </div>
   </div>
   <%= link_to "New movie", new_movie_path %>
