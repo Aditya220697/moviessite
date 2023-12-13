@@ -1,4 +1,4 @@
-<div class="container-fluid" style="background-color: azure;">
+<div class="container" style="background-color: azure;">
 <p style="color: green"><%= notice %></p>
   <h1>Movies</h1>
 
@@ -7,8 +7,11 @@
     <% @movies.each do |movie| %>
       <div class="col-sm-3 mb-2 px-2" style="width:20%">
         <a href="<%= movie_path(movie) %>">
-          <div class="card" style="width: 12rem;height: 18rem;">
-          <img class="card-img-top" src="<%= movie.thumbnail %>" alt="Card image cap" style="height:500px;border:black">
+          <div class="card">
+            <img class="card-img-top" src="<%= movie.thumbnail %>" alt="Card image cap" style="border:black;width:14rem;height:20rem;">
+            <div class="card-body" style="width: 14rem;height: 8rem;">
+              <h6><%= movie.title %></h6>
+            </div>
           </div>
         </a>
       </div>

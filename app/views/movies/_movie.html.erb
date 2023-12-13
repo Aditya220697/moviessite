@@ -13,10 +13,10 @@
           <h6 class="card-title text-center"><%= movie.genre %></h6>
           <a class="card-title text-center" href="<%= movie.imdb_link %>" style="text-decoration: none;">IMDB Rating</a>
           <h5 class="card-title text-center"><%= movie.rating %></h5>
-          <p class="card-title text-center"><%= movie.director %></p>
-          <p class="card-title text-center"><%= movie.creator %></p>
-          <p class="card-title text-center"><%= movie.actors %></p>
-          <p class="card-title text-center"><%= movie.story %></p>
+          <p class="card-title text-center"> <b>Director: </b><%= movie.director %></p>
+          <p class="card-title text-center"><b>Creator: </b><%= movie.creator %></p>
+          <p class="card-title text-center"><b>Actor: </b><%= movie.actors %></p>
+          <p class="card-title text-center"><b>Story: </b><%= movie.story %></p>
           <p class="card-text"><%= movie.short_description %></p>
           
           <a href="<%= movie.mobile_hd_download_link %>" class="btn btn-primary">Download 480p<a><br><br>
